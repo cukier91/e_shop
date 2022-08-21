@@ -14,36 +14,37 @@ const Home: NextPage = () => {
 	console.log(router);
 	return (
 		<>
-			<NavBar />
-			<div className="flex justify-center">
+			<div className="flex justify-center bg-gray-50">
 				<div className="w-full lg:w-2/3 md:w-2/3">
 					<div className="px-8 py-8">
-						<a className="relative block bg-black group" href="">
-							<Image
-								layout="fill"
-								className="absolute inset-0 object-cover w-full h-full transition-opacity opacity-75  group-hover:opacity-50"
-								src={shopping.src}
-								alt=""
-							/>
-							<div className="relative p-8">
-								<p className="text-sm font-bold tracking-widest text-white uppercase">
-									PG Projekty
-								</p>
+						<Link href="products">
+							<a className="relative block bg-black group" href="">
+								<Image
+									layout="fill"
+									className="absolute inset-0 object-cover w-full h-full transition-opacity opacity-75  group-hover:opacity-50"
+									src={shopping.src}
+									alt=""
+								/>
+								<div className="relative p-8">
+									<p className="text-sm font-bold tracking-widest text-white uppercase">
+										PG Projekty
+									</p>
 
-								<p className="text-4xl font-bold text-white">Sklep</p>
+									<p className="text-4xl font-bold text-white">Sklep</p>
 
-								<div className="mt-64">
-									<div className="transition-all transform translate-y-8 opacity-0  group-hover:opacity-100 group-hover:translate-y-0">
-										<p className="text-sm text-white">
-											Lorem ipsum dolor, sit amet consectetur adipisicing elit.
-											Omnis perferendis hic asperiores quibusdam quidem
-											voluptates doloremque reiciendis nostrum harum.
-											Repudiandae?
-										</p>
+									<div className="mt-64">
+										<div className="transition-all transform translate-y-8 opacity-0  group-hover:opacity-100 group-hover:translate-y-0">
+											<p className="text-sm text-white">
+												Lorem ipsum dolor, sit amet consectetur adipisicing
+												elit. Omnis perferendis hic asperiores quibusdam quidem
+												voluptates doloremque reiciendis nostrum harum.
+												Repudiandae?
+											</p>
+										</div>
 									</div>
 								</div>
-							</div>
-						</a>
+							</a>
+						</Link>
 					</div>
 					<div className="py-8 px-8">
 						<a className="relative block bg-black group" href="">
@@ -75,7 +76,6 @@ const Home: NextPage = () => {
 					</div>
 				</div>
 			</div>
-			<Footer />
 		</>
 	);
 };
