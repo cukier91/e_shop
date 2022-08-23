@@ -7,19 +7,15 @@ import Filter from '../../components/Filter/Filter';
 import ProductCart from '../../components/ProductCart/ProductCart';
 
 const Products = ({ data }: InferGetStaticPropsType<typeof getStaticProps>) => {
-
-  console.log(data)
+	console.log(data);
 	return (
 		<>
 			<Filter />
-      <ProductCart/>
-			<div>
+
+			<div className="flex py-6 px-6 gap-3 flex-wrap justify-center">
 				{data.products.map((product: any) => {
-					return (
-						<p key={product.slug}>
-							<Link href={`/products/${product.slug}`}>{product.name}</Link>
-						</p>
-					);
+					console.log(product);
+					return <ProductCart key={product.id} product={product} />;
 				})}
 			</div>
 		</>
