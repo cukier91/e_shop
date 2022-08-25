@@ -9,7 +9,7 @@ import ProductCart from '../../components/ProductCart/ProductCart';
 const Products = ({ data }: InferGetStaticPropsType<typeof getStaticProps>) => {
 	console.log(data);
 	return (
-		<>
+		<div className="bg-grey-50">
 			<Filter />
 
 			<div className="flex py-6 px-6 gap-3 flex-wrap justify-center">
@@ -18,7 +18,7 @@ const Products = ({ data }: InferGetStaticPropsType<typeof getStaticProps>) => {
 					return <ProductCart key={product.id} product={product} />;
 				})}
 			</div>
-		</>
+		</div>
 	);
 };
 

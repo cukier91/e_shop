@@ -3,23 +3,28 @@ import { useState } from 'react';
 
 export default function Filter() {
 	const [filter, useFilter] = useState<boolean>(false);
-
+	const [filterList, useFilterList] = useState<Array<string>>([
+		'Zabezpieczenia pasywne',
+		'Meble',
+		'Mała architektura',
+		'Konstrukcje stalowe',
+	]);
 	return (
 		<>
 			{filter ? (
-				<div className="flex bg-gray-100 w-full h-16 justify-center gap-6 py-4 px-2">
-					<label>
-						<input type="checkbox" className="blue-500 hoover:bg-blue-700" />{' '}
-						Customized
-					</label>
-					<label>
-						<input type="checkbox" className="blue-500 hoover:bg-blue-700" />{' '}
-						Customized
-					</label>
-					<label>
-						<input type="checkbox" className="blue-500 hoover:bg-blue-700" />{' '}
-						Customized
-					</label>
+				<div className="flex flex-wrap bg-gray-100 w-full justify-center gap-6 py-2 px-2 text-sm">
+					{filterList.map((element) => {
+						return (
+							<label key={element}>
+								<input
+                  id={element}
+									type="checkbox"
+									className="blue-500 hoover:bg-blue-700"
+								/>{' '}
+								{element}
+							</label>
+						);
+					})}
 				</div>
 			) : null}
 			<button

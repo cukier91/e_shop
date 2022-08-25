@@ -24,7 +24,7 @@ export default function ProductCart({product}:{product:any}) {
 				className="block w-full p-4 mt-4 text-sm font-medium bg-blue-500 rounded-sm text-white"
 				type="button"
 			>
-				Add to Cart
+				Dodaj do koszyka
 			</button>
 		</div>
 	);
