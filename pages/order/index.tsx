@@ -3,14 +3,18 @@ import React from 'react';
 import { useState } from 'react';
 import Details from '../../components/OrderForm/Details';
 import Address from '../../components/OrderForm/Address';
+import { useFormik, FormikProvider } from 'formik';
 
 export default function Order() {
 	const [stage, useStage] = useState<number>(1);
 
-	function changeStage(e: React.SyntheticEvent, param: number) {
-		e.preventDefault();
-		return useStage(stage + param);
-	}
+	const formik = useFormik({
+		initialValues: {},
+		onSubmit: (values) => {
+			console.log(values);
+		},
+	});
+
 
 	return (
 		<div className="px-4 py-6 md:px-12 md:py-8 lg:px-64 lg:py-16 xl:px-96 ">
@@ -89,55 +93,62 @@ export default function Order() {
 			</div>
 
 			<div className="flex h-screen justify-center mt-4 py-8 px-8 ">
-				<form className="w-full h-2/4 sm:h-2/3 md:w-3/6 md:h-3/6 lg:h-96 border-2 border-gray-200 px-8 py-8">
-					{stage === 1 ? <Details /> : stage == 2 ? <Address /> : null}
-					<div className="relative h-20 w-full">
-						{stage === 3 ? null : (
-							<button
-								className="absolute bottom-0 right-0 h-16 w-16"
-								onClick={(e) => changeStage(e, 1)}
-							>
-								<svg
-									xmlns="http://www.w3.org/2000/svg"
-									className="icon icon-tabler icon-tabler-arrow-big-right text-blue-700"
-									width="48"
-									height="32"
-									viewBox="0 0 24 24"
-									stroke-width="2"
-									stroke="currentColor"
-									fill="none"
-									stroke-linecap="round"
-									stroke-linejoin="round"
+				<FormikProvider value={formik}>
+					<form
+						className="w-full h-2/4 sm:h-2/3 md:w-3/6 md:h-3/6 lg:h-96 border-2 border-gray-200 px-8 py-8"
+						onSubmit={formik.handleSubmit}
+					>
+						{stage === 1 ? <Details /> : stage == 2 ? <Address /> : null}
+						<div className="relative h-20 w-full">
+							{stage === 3 ? null : (
+								<button
+									className="absolute bottom-0 right-0 h-16 w-16"
+									type="button"
+									onClick={() => useStage(stage + 1)}
 								>
-									<path stroke="none" d="M0 0h24v24H0z" fill="none"></path>
-									<path d="M4 9h8v-3.586a1 1 0 0 1 1.707 -.707l6.586 6.586a1 1 0 0 1 0 1.414l-6.586 6.586a1 1 0 0 1 -1.707 -.707v-3.586h-8a1 1 0 0 1 -1 -1v-4a1 1 0 0 1 1 -1z"></path>
-								</svg>
-							</button>
-						)}
-						{stage === 1 ? null : (
-							<button
-								className="absolute bottom-0 left-0 h-16 w-16"
-								onClick={(e) => changeStage(e, -1)}
-							>
-								<svg
-									xmlns="http://www.w3.org/2000/svg"
-									className="icon icon-tabler icon-tabler-arrow-big-left text-blue-700"
-									width="48"
-									height="32"
-									viewBox="0 0 24 24"
-									stroke-width="2"
-									stroke="currentColor"
-									fill="none"
-									stroke-linecap="round"
-									stroke-linejoin="round"
+									<svg
+										xmlns="http://www.w3.org/2000/svg"
+										className="icon icon-tabler icon-tabler-arrow-big-right text-blue-700"
+										width="48"
+										height="32"
+										viewBox="0 0 24 24"
+										stroke-width="2"
+										stroke="currentColor"
+										fill="none"
+										stroke-linecap="round"
+										stroke-linejoin="round"
+									>
+										<path stroke="none" d="M0 0h24v24H0z" fill="none"></path>
+										<path d="M4 9h8v-3.586a1 1 0 0 1 1.707 -.707l6.586 6.586a1 1 0 0 1 0 1.414l-6.586 6.586a1 1 0 0 1 -1.707 -.707v-3.586h-8a1 1 0 0 1 -1 -1v-4a1 1 0 0 1 1 -1z"></path>
+									</svg>
+								</button>
+							)}
+							{stage === 1 ? null : (
+								<button
+									className="absolute bottom-0 left-0 h-16 w-16"
+									type="button"
+									onClick={() => useStage(stage - 1)}
 								>
-									<path stroke="none" d="M0 0h24v24H0z" fill="none"></path>
-									<path d="M20 15h-8v3.586a1 1 0 0 1 -1.707 .707l-6.586 -6.586a1 1 0 0 1 0 -1.414l6.586 -6.586a1 1 0 0 1 1.707 .707v3.586h8a1 1 0 0 1 1 1v4a1 1 0 0 1 -1 1z"></path>
-								</svg>
-							</button>
-						)}
-					</div>
-				</form>
+									<svg
+										xmlns="http://www.w3.org/2000/svg"
+										className="icon icon-tabler icon-tabler-arrow-big-left text-blue-700"
+										width="48"
+										height="32"
+										viewBox="0 0 24 24"
+										stroke-width="2"
+										stroke="currentColor"
+										fill="none"
+										stroke-linecap="round"
+										stroke-linejoin="round"
+									>
+										<path stroke="none" d="M0 0h24v24H0z" fill="none"></path>
+										<path d="M20 15h-8v3.586a1 1 0 0 1 -1.707 .707l-6.586 -6.586a1 1 0 0 1 0 -1.414l6.586 -6.586a1 1 0 0 1 1.707 .707v3.586h8a1 1 0 0 1 1 1v4a1 1 0 0 1 -1 1z"></path>
+									</svg>
+								</button>
+							)}
+						</div>
+					</form>
+				</FormikProvider>
 			</div>
 		</div>
 	);

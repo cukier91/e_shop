@@ -38,16 +38,18 @@ export default function Address() {
 			<div className="relative mt-2">
 				<label
 					className="block text-xs font-medium text-gray-500"
-					htmlFor="email"
+					htmlFor="post_code"
 				>
 					{' '}
-					Email{' '}
+					Kod pocztowy{' '}
 				</label>
 
 				<input
 					className="w-full p-2 mt-1 text-sm border-2 border-gray-200 rounded"
-					id="email"
-					type="email"
+					id="post_code"
+					type="text"
+					pattern="[0-9]*"
+                    placeholder='00-000'
 				/>
 			</div>
 		</>
